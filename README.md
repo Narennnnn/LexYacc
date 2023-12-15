@@ -19,9 +19,24 @@ cc lex.yy.c y.tab.c
 ```
 ./a.out
 ```
-# Example: Enter arithmetic expressions at the prompt (e.g., 2+3*4)
-# The result will be displayed after ctrl+d
 
-# Clean up (optional)
+## Clean up (optional)
+```
 rm lex.yy.c y.tab.c y.tab.h
+```
 
+## Install Flex (if not already installed)
+```
+sudo dnf install flex
+```
+## Compile Lex file and link with Flex library
+```
+lex count.l
+```
+```
+gcc lex.yy.c -lfl -o word_count
+```
+# Run the resulting program
+```
+./word_count
+```
