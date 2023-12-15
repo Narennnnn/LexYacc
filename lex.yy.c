@@ -351,8 +351,8 @@ static void yynoreturn yy_fatal_error ( const char* msg  );
 	(yy_hold_char) = *yy_cp; \
 	*yy_cp = '\0'; \
 	(yy_c_buf_p) = yy_cp;
-#define YY_NUM_RULES 5
-#define YY_END_OF_BUFFER 6
+#define YY_NUM_RULES 6
+#define YY_END_OF_BUFFER 7
 /* This struct is not used in this scanner,
    but its presence is necessary. */
 struct yy_trans_info
@@ -362,7 +362,7 @@ struct yy_trans_info
 	};
 static const flex_int16_t yy_accept[10] =
     {   0,
-        0,    0,    6,    3,    2,    4,    1,    1,    0
+        0,    0,    7,    5,    4,    3,    1,    2,    0
     } ;
 
 static const YY_CHAR yy_ec[256] =
@@ -371,8 +371,8 @@ static const YY_CHAR yy_ec[256] =
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
-        1,    1,    1,    1,    1,    1,    1,    4,    4,    4,
-        4,    4,    4,    4,    4,    4,    4,    1,    1,    1,
+        1,    1,    1,    1,    1,    1,    1,    4,    5,    1,
+        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
@@ -397,31 +397,31 @@ static const YY_CHAR yy_ec[256] =
         1,    1,    1,    1,    1
     } ;
 
-static const YY_CHAR yy_meta[5] =
+static const YY_CHAR yy_meta[6] =
     {   0,
-        1,    1,    1,    2
+        1,    1,    1,    1,    1
     } ;
 
-static const flex_int16_t yy_base[11] =
+static const flex_int16_t yy_base[10] =
     {   0,
-        0,    0,    6,    7,    7,    7,    0,    0,    7,    3
+        0,    0,    6,    7,    7,    7,    7,    7,    7
     } ;
 
-static const flex_int16_t yy_def[11] =
+static const flex_int16_t yy_def[10] =
     {   0,
-        9,    1,    9,    9,    9,    9,   10,   10,    0,    9
+        9,    1,    9,    9,    9,    9,    9,    9,    0
     } ;
 
-static const flex_int16_t yy_nxt[12] =
+static const flex_int16_t yy_nxt[13] =
     {   0,
         4,    5,    6,    7,    8,    9,    3,    9,    9,    9,
-        9
+        9,    9
     } ;
 
-static const flex_int16_t yy_chk[12] =
+static const flex_int16_t yy_chk[13] =
     {   0,
-        1,    1,    1,    1,   10,    3,    9,    9,    9,    9,
-        9
+        1,    1,    1,    1,    1,    3,    9,    9,    9,    9,
+        9,    9
     } ;
 
 static yy_state_type yy_last_accepting_state;
@@ -438,14 +438,15 @@ int yy_flex_debug = 0;
 #define YY_MORE_ADJ 0
 #define YY_RESTORE_YY_MORE_OFFSET
 char *yytext;
-#line 1 "arthmetic.l"
-#line 2 "arthmetic.l"
+#line 1 "binCount.l"
+#line 2 "binCount.l"
 #include<stdlib.h>
 #include "y.tab.h"
-extern int yyval;
-int yywrap();    
-#line 447 "lex.yy.c"
+extern int yylval;
+
+int yywrap();
 #line 448 "lex.yy.c"
+#line 449 "lex.yy.c"
 
 #define INITIAL 0
 
@@ -662,9 +663,9 @@ YY_DECL
 		}
 
 	{
-#line 7 "arthmetic.l"
+#line 9 "binCount.l"
 
-#line 667 "lex.yy.c"
+#line 668 "lex.yy.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -723,33 +724,36 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 8 "arthmetic.l"
-{ yyval=atoi(yytext);
-         return NUM;
-       }
+#line 10 "binCount.l"
+{ yylval = atoi(yytext); return ZERO; }
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 11 "arthmetic.l"
-;
+#line 11 "binCount.l"
+{ yylval = atoi(yytext); return ONE; }
 	YY_BREAK
 case 3:
+/* rule 3 can match eol */
 YY_RULE_SETUP
-#line 12 "arthmetic.l"
-return yytext[0];
+#line 12 "binCount.l"
+{ return EOL; }   /* Return EOL token for newline characters */
 	YY_BREAK
 case 4:
-/* rule 4 can match eol */
 YY_RULE_SETUP
-#line 13 "arthmetic.l"
-;
+#line 13 "binCount.l"
+;   /* Ignore tabs */
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 14 "arthmetic.l"
+#line 14 "binCount.l"
+;   /* Ignore other characters */
+	YY_BREAK
+case 6:
+YY_RULE_SETUP
+#line 16 "binCount.l"
 ECHO;
 	YY_BREAK
-#line 752 "lex.yy.c"
+#line 756 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1754,9 +1758,10 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 14 "arthmetic.l"
+#line 16 "binCount.l"
 
-int yywrap()
-{
+
+int yywrap() {
     return 1;
 }
+

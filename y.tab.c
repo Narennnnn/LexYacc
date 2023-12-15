@@ -20,12 +20,15 @@
 
 #define YYPURE 0
 
-#line 2 "aruthmetic.y"
+#line 2 "binCount.y"
 #include <stdio.h>
-void yyerror(char *);
-int yylex();
-int yywrap();
-#line 29 "y.tab.c"
+
+int zeroCount = 0;
+
+void yyerror(const char *s);
+int yylex(void);
+
+#line 32 "y.tab.c"
 
 #if ! defined(YYSTYPE) && ! defined(YYSTYPE_IS_DECLARED)
 /* Default: YYSTYPE is the semantic value type. */
@@ -68,91 +71,80 @@ int YYLEX_DECL();
 
 extern int YYPARSE_DECL();
 
-#define NUM 257
+#define ZERO 257
+#define ONE 258
+#define EOL 259
 #define YYERRCODE 256
 typedef int YYINT;
 static const YYINT yylhs[] = {                           -1,
-    0,    1,    1,    2,    2,    3,
+    0,    0,    1,    2,    2,
 };
 static const YYINT yylen[] = {                            2,
-    1,    3,    1,    3,    1,    1,
+    1,    2,    1,    1,    1,
 };
 static const YYINT yydefred[] = {                         0,
-    6,    0,    0,    0,    5,    0,    0,    0,    4,
+    4,    5,    0,    0,    3,    2,
 };
 #if defined(YYDESTRUCT_CALL) || defined(YYSTYPE_TOSTRING)
 static const YYINT yystos[] = {                           0,
-  257,  259,  260,  261,  262,   43,   42,  261,  262,
+  257,  258,  261,  262,  263,  263,
 };
 #endif /* YYDESTRUCT_CALL || YYSTYPE_TOSTRING */
-static const YYINT yydgoto[] = {                          2,
-    3,    4,    5,
+static const YYINT yydgoto[] = {                          3,
+    4,    5,
 };
 static const YYINT yysindex[] = {                      -257,
-    0,    0,  -40,  -38,    0, -257, -257,  -38,    0,
+    0,    0,    0, -257,    0,    0,
 };
 static const YYINT yyrindex[] = {                         0,
-    0,    0,    5,    1,    0,    0,    0,    2,    0,
+    0,    0,    0,    2,    0,    0,
 };
 #if YYBTYACC
 static const YYINT yycindex[] = {                         0,
-    0,    0,    0,    0,    0,    0,    0,    0,    0,
+    0,    0,    0,    0,    0,    0,
 };
 #endif
 static const YYINT yygindex[] = {                         0,
-    0,    3,   -1,
+    0,   -1,
 };
-#define YYTABLESIZE 45
+#define YYTABLESIZE 3
 static const YYINT yytable[] = {                          1,
-    3,    2,    6,    7,    1,    9,    0,    0,    8,    0,
-    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
-    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
-    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
-    0,    0,    0,    3,    2,
+    2,    1,    6,
 };
 static const YYINT yycheck[] = {                        257,
-    0,    0,   43,   42,    0,    7,   -1,   -1,    6,   -1,
-   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
-   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
-   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
-   -1,   -1,   -1,   43,   43,
+  258,    0,    4,
 };
 #if YYBTYACC
 static const YYINT yyctable[] = {                        -1,
-   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
-   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
-   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
-   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
-   -1,   -1,   -1,   -1,
+   -1,   -1,
 };
 #endif
-#define YYFINAL 2
+#define YYFINAL 3
 #ifndef YYDEBUG
 #define YYDEBUG 0
 #endif
-#define YYMAXTOKEN 257
-#define YYUNDFTOKEN 263
+#define YYMAXTOKEN 259
+#define YYUNDFTOKEN 264
 #define YYTRANSLATE(a) ((a) > YYMAXTOKEN ? YYUNDFTOKEN : (a))
 #if YYDEBUG
 static const char *const yyname[] = {
 
 "$end",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,"'*'","'+'",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"error","NUM","$accept","S","E",
-"T","F","illegal-symbol",
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"error","ZERO","ONE","EOL","$accept","S",
+"N","D","illegal-symbol",
 };
 static const char *const yyrule[] = {
 "$accept : S",
-"S : E",
-"E : E '+' T",
-"E : T",
-"T : T '*' F",
-"T : F",
-"F : NUM",
+"S : N",
+"S : N D",
+"N : D",
+"D : ZERO",
+"D : ONE",
 
 };
 #endif
@@ -284,18 +276,17 @@ static YYINT  *yylexp = 0;
 
 static YYINT  *yylexemes = 0;
 #endif /* YYBTYACC */
-#line 23 "aruthmetic.y"
-int main()
-{
-    yyparse();
-    return 0; // Return 0 for successful execution
-}
+#line 27 "binCount.y"
 
-void yyerror(char *s) {
+void yyerror(const char *s) {
     fprintf(stderr, "Error: %s\n", s);
 }
 
-#line 299 "y.tab.c"
+int main() {
+    yyparse();
+    return 0;
+}
+#line 290 "y.tab.c"
 
 /* For use in generated program */
 #define yydepth (int)(yystack.s_mark - yystack.s_base)
@@ -966,36 +957,31 @@ yyreduce:
     switch (yyn)
     {
 case 1:
-#line 12 "aruthmetic.y"
-	{ printf("The value is %d\n", yystack.l_mark[0]); }
-#line 972 "y.tab.c"
+#line 15 "binCount.y"
+	{ printf("Number of zeroes: %d\n", zeroCount); }
+#line 963 "y.tab.c"
 break;
 case 2:
-#line 14 "aruthmetic.y"
-	{ yyval = yystack.l_mark[-2] + yystack.l_mark[0]; }
-#line 977 "y.tab.c"
+#line 16 "binCount.y"
+	{ printf("Number of zeroes: %d\n", zeroCount); }
+#line 968 "y.tab.c"
 break;
 case 3:
-#line 15 "aruthmetic.y"
-	{ yyval = yystack.l_mark[0]; }
-#line 982 "y.tab.c"
+#line 19 "binCount.y"
+	{ }
+#line 973 "y.tab.c"
 break;
 case 4:
-#line 17 "aruthmetic.y"
-	{ yyval = yystack.l_mark[-2] * yystack.l_mark[0]; }
-#line 987 "y.tab.c"
+#line 22 "binCount.y"
+	{ yyval = 1; zeroCount++; }
+#line 978 "y.tab.c"
 break;
 case 5:
-#line 18 "aruthmetic.y"
-	{ yyval = yystack.l_mark[0]; }
-#line 992 "y.tab.c"
+#line 23 "binCount.y"
+	{ }
+#line 983 "y.tab.c"
 break;
-case 6:
-#line 20 "aruthmetic.y"
-	{ yyval = yystack.l_mark[0]; }
-#line 997 "y.tab.c"
-break;
-#line 999 "y.tab.c"
+#line 985 "y.tab.c"
     default:
         break;
     }
