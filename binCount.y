@@ -1,26 +1,24 @@
 %{
 #include <stdio.h>
 
-int zeroCount = 0;
-
 void yyerror(const char *s);
 int yylex(void);
 
 %}
 
 %start S
-%token ZERO ONE EOL
+%token ZERO ONE 
 
 %%
-S: N                { printf("Number of zeroes: %d\n", zeroCount); }
- | N D              { printf("Number of zeroes: %d\n", zeroCount); }
+S: N                { printf("Number of zeroes: %d\n", $1); }
+ | N D              { $$=$1+$2; }
  ;
 
-N: D                { }
+N: D                { $$=$1; }
  ;
 
-D: ZERO             { $$ = 1; zeroCount++; }
- | ONE              { }
+D: ZERO             { $$ = 1; }
+ | ONE              { $$ = 0; }
  ;
 
 %%
