@@ -1,0 +1,4 @@
+db_type :  postgres
+db_name : exchangesData
+db_table_prefix : test_
+db_port: 5432
